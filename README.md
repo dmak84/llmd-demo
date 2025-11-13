@@ -44,7 +44,7 @@ This PD split allows **KV cache transfer** between stages, improving throughput 
 | Component               | `gpt-oss-20b`                                                                                      | `qwen-pd`                                                                                      |
 | ----------------------- | -------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
 | **Plugin Types**        | `single-profile-handler`,`max-score-picker`,`queue-scorer`,`kv-cache-scorer`,`prefix-cache-scorer` | `pd-profile-handler`,`prefill-header-handler`,`prefill-filter`,`decode-filter`,`random-picker` |
-| **Purpose**             | Focus on**cache-aware routing**(prefix/kv scoring for token reuse).                                | Focus on**stage separation and routing**between*prefill*and*decode*pools.                      |
+| **Purpose**             | Focus on**cache-aware routing**(prefix/kv scoring for token reuse).                                | Focus on**stage separation and routing** between prefill and decode pools.                 |
 | **Scheduling Profiles** | Single`"default"`profile (all handled together).                                                   | Two profiles:`"prefill"`and`"decode"`.                                                         |
 
 **Explanation:**
@@ -390,6 +390,8 @@ Requests first classified as prefill or decode by the handlers, then routed rand
 ```
 
 **Summary:**
+
+
 Single pool routing → Smart cache scoring → Highest score wins.
 Good for smaller clusters or when cache locality matters more than multi-stage optimization.
 
