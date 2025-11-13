@@ -467,6 +467,6 @@ Router plugins ensure each request phase goes to the right pool.
 | ---------- | ----------------------------------- | ------------------------------------ |
 | Handler    | Single profile                      | Prefill/Decode split                 |
 | Scorer     | Prefix/KV/Queue scoring             | None (simple random pick)            |
-| Picker     | max-score-picker                    | random-picker****                    |
+| Picker     | max-score-picker                    | random-picker                        |
 | Networking | Standard TCP/IP                     | RDMA (low-latency KV cache transfer) |
 | Purpose    | Optimize cache reuse in single pool | Enable 2-stage distributed inference |
